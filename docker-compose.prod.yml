@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  mongo:
+    image: "mongo:latest"
+    env_file:
+      - ./.env
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - mongo-volume:/data/db
+
+  server:
+    build: ./server
+    dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    depends_on:
+      - mongo
+
+  front:
+    build: ./client
+    dockerfile: Dockerfile
+    depends_on:
+      - server
+    env_file:
+      - ./.env
+
+volumes:
+  mongo-volume:

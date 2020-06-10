@@ -1,0 +1,251 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Students example",
+    "description": "The students API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "students",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "GetStudentDto": {
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "string",
+            "enum": [
+              "Excellent",
+              "Good",
+              "Satisfactory",
+              "Unsatisfactory",
+              "Fail"
+            ]
+          },
+          "birthday": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "studentId",
+          "fullName",
+          "progress",
+          "birthday",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateStudentDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "string",
+            "enum": [
+              "Excellent",
+              "Good",
+              "Satisfactory",
+              "Unsatisfactory",
+              "Fail"
+            ]
+          },
+          "birthday": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fullName",
+          "progress",
+          "birthday"
+        ]
+      },
+      "UpdateStudentDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "string",
+            "enum": [
+              "Excellent",
+              "Good",
+              "Satisfactory",
+              "Unsatisfactory",
+              "Fail"
+            ]
+          },
+          "birthday": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "api-json",
+    "url": "/api-json"
+  },
+  "paths": {
+    "/v1/students": {
+      "get": {
+        "operationId": "StudentsController_findAllStudents",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudentDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "students"
+        ]
+      },
+      "post": {
+        "operationId": "StudentsController_createStudent",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The student has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudentDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        },
+        "tags": [
+          "students"
+        ]
+      }
+    },
+    "/v1/students/{studentId}": {
+      "get": {
+        "operationId": "StudentsController_getStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudentDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "students"
+        ]
+      },
+      "put": {
+        "operationId": "StudentsController_updateStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "students"
+        ]
+      },
+      "delete": {
+        "operationId": "StudentsController_deleteStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "students"
+        ]
+      }
+    }
+  }
+}
