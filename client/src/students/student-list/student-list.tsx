@@ -11,7 +11,7 @@ import { push } from 'connected-react-router';
 
 export type StudentListProps = {};
 
-export const StudentList: React.SFC<StudentListProps> = () => {
+export const StudentList: React.FC<StudentListProps> = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const students = useSelector(studentListSelector);

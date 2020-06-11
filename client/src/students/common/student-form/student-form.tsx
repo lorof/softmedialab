@@ -27,7 +27,7 @@ export type StudentFormProps = {
   handleCancel?: () => void;
 } & StudentFormValues;
 
-export const StudentForm: React.SFC<StudentFormProps> = (props) => {
+export const StudentForm: React.FC<StudentFormProps> = (props) => {
   const classes = useStyles();
 
   const formik = useFormik<StudentFormValues>({

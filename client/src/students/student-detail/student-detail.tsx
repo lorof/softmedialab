@@ -11,7 +11,7 @@ import { push } from 'connected-react-router';
 
 export type StudentDetailProps = {};
 
-export const StudentDetail: React.SFC<StudentDetailProps> = () => {
+export const StudentDetail: React.FC<StudentDetailProps> = () => {
   const params = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const student = useSelector(studentDetailSelector);
